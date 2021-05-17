@@ -1,2 +1,2 @@
 # Portfolio_DSFB2
-portfolio for DSFB2
+This file contains my current portfolio. 
