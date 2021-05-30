@@ -1,0 +1,17 @@
+my work plan:
+
+1. excersizing with shiny app during master class and with other websites (1-2 days)
+
+2. finding a dataset which I will use for my own app. I am going to use the dataset I also use during Projecticum. This is helpful for my skills during Projecticum. (0,5 day)
+
+3. now I have enough information to actually build my Shiny App. I am going to make an app which is very easy to understand but has different analytical plots and graphs. (2-3 days)
+
+My recources:
+
+https://towardsdatascience.com/beginners-guide-to-creating-an-r-shiny-app-1664387d95b3 -> this website is helpful for understanding Shiny better
+
+for downloading the dataset:
+
+fn <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE152439&format=file"
+download.file(fn,destfile="GSE152439.gz")
+
