@@ -1,0 +1,417 @@
+---
+title: "EindopdrachtMark.Rmd"
+author: "Tiara & Gijs"
+date: "26-3-2021"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dslabs)
+library(readxl)
+library(ggplot2)
+library(kableExtra)
+```
+
+# de opdrachten:
+
+## opdracht 1 hieronder
+
+Question 1
+
+a. Import datafile gene_expression
+
+b. Import datafile gene_annotation
+```{r import, echo=FALSE}
+primed_denovo_2 <- read_csv ("data/eindopdracht/primed_denovo_2")
+primed_denovo_expression <- read_excel ("data/eindopdracht/primed_denovo_expression.xlsx" , sheet = 5)
+gene_anno <- read_excel ("data/eindopdracht/gene_annotation.xlsx")
+gene_expression2 <- read_tsv("data/eindopdracht/gene_expression_2.txt", locale = locale(decimal_mark = ","))
+
+```
+
+
+## opdracht 2a hieronder
+
+How many variables do the datasets have of type “double”? Show results in a table
+```{r code vraag 2a, echo=FALSE}
+
+
+V2a_gene_expression2<-gene_expression2 %>% select('0h','3h','12h','24h','48h')
+
+aantal_doubles_0h<-length(V2a_gene_expression2$"0h")
+aantal_doubles_3h<-length(V2a_gene_expression2$"3h")
+aantal_doubles_12h<-length(V2a_gene_expression2$"12h")
+aantal_doubles_24h<-length(V2a_gene_expression2$"24h")
+aantal_doubles_48h<-length(V2a_gene_expression2$"48h")
+
+all_lenght_v2a<- tibble(aantal_doubles_0h,aantal_doubles_3h,aantal_doubles_12h,aantal_doubles_24h,aantal_doubles_48h)
+
+knitr::kable( all_lenght_v2a)
+  caption= "hierboven staan het aantal doubles aanwezig in de dataset gen_expression2 elk van deze had 1000 double's dus 5000 in totaal"
+```
+hierboven staan het aantal doubles aanwezig in de dataset gen_expression2
+
+## opdracht 2b hieronder
+
+What are the standard deviation of variable 6h and 48h of dataset gene_expression? Provide this
+information in inline code
+```{r code vraag 2b}
+sd(V2a_gene_expression2$'48h')
+
+sd(V2a_gene_expression2$'3h')
+```
+hierboven staat de standaard deviatie van gene expression:eerst 48h en dan 3h (6h bestaat niet)
+
+## opdracht 2c hieronder
+
+How many NAs are present in variable “Gene description” of datafile gene_annotation? Show
+results in a table
+```{r code vraag 2c,echo=FALSE}
+
+knitr::kable(head(gene_anno %>% filter(is.na(`Gene description`))))
+
+
+
+
+```
+er zijn in totaal 137 rijen die NA bevatten
+
+## opdracht 2d hieronder
+
+Group the expression levels in gene_expression into bins (size of your choice). For each bin in
+each duration, calculate the percentage of genes that have expression levels falling within that
+bin. Make a table with this information
+
+.
+```{r code voor vraag 2d, echo= FALSE}
+uur0<- gene_expression2 %>% select('0h')
+uur3<- gene_expression2 %>% select('3h')
+uur12<- gene_expression2 %>% select('12h')
+uur24<- gene_expression2 %>% select('24h')
+uur48<- gene_expression2 %>% select('48h')
+
+expressiev1.1<- uur0 %>% filter(uur0$"0h" >= 1.5 & uur0$"0h" <=4) #409 40.9%
+expressiev1.2<- uur3 %>% filter(uur3$"3h" >= 1.5 & uur3$"3h" <=4) #408 40.8%
+expressiev1.3<- uur12 %>% filter(uur12$"12h" >= 1.5 & uur12$"12h" <=4) #406 40.6%
+expressiev1.4<- uur24 %>% filter(uur24$"24h" >= 1.5 & uur24$"24h" <=4) #401 40.1%
+expressiev1.5<- uur48%>% filter(uur48$"48h" >= 1.5 & uur48$"48h" <=4) #394  39.4%
+
+expressiev2.1<- uur0 %>% filter(uur0$"0h" >= 4 & uur0$"0h" <=6.5) #313   31.3%
+expressiev2.2<- uur3 %>% filter(uur3$"3h" >= 4 & uur3$"3h" <=6.5)#320 32.0%
+expressiev2.3<- uur12 %>% filter(uur12$"12h" >= 4 & uur12$"12h" <=6.5)#318 31.8%
+expressiev2.4<- uur24 %>% filter(uur24$"24h" >= 4 & uur24$"24h" <=6.5)#312 31.2%
+expressiev2.5<- uur48%>% filter(uur48$"48h" >= 4 & uur48$"48h" <=6.5)#325  32.5%
+
+expressiev3.1<- uur0 %>% filter(uur0$"0h" >= 6.5 & uur0$"0h" <=9)#217  21.7%
+expressiev3.2<- uur3 %>% filter(uur3$"3h" >= 6.5 & uur3$"3h" <=9)#209   20.9%
+expressiev3.3<- uur12 %>% filter(uur12$"12h" >= 6.5 & uur12$"12h" <=9)#213  21.3%
+expressiev3.4<- uur24 %>% filter(uur24$"24h" >= 6.5 & uur24$"24h" <=9)#213  21.3%
+expressiev3.5<- uur48%>% filter(uur48$"48h" >= 6.5 & uur48$"48h" <=9)#212 21.2%
+
+expressiev4.1<- uur0 %>% filter(uur0$"0h" >= 9 & uur0$"0h" <=11.5)#58   5.8%
+expressiev4.2<- uur3 %>% filter(uur3$"3h" >= 9 & uur3$"3h" <=11.5)#57  5.7%
+expressiev4.3<- uur12 %>% filter(uur12$"12h" >= 9 & uur12$"12h" <=11.5)#57 5.7%
+expressiev4.4<- uur24 %>% filter(uur24$"24h" >= 9 & uur24$"24h" <=11.5)#68 6.8%
+expressiev4.5<- uur48%>% filter(uur48$"48h" >= 9 & uur48$"48h" <=11.5)#63  6.3%
+
+expressiev5.1<- uur0 %>% filter(uur0$"0h" >= 11.5 & uur0$"0h" <=14)#3 0.3%
+expressiev5.2<- uur3 %>% filter(uur3$"3h" >= 11.5 & uur3$"3h" <=14)#6  0.6%
+expressiev5.3<- uur12 %>% filter(uur12$"12h" >= 11.5 & uur12$"12h" <=14)#6  0.6%
+expressiev5.4<- uur24 %>% filter(uur24$"24h" >= 11.5 & uur24$"24h" <=14)#6  0.6%
+expressiev5.5<- uur48%>% filter(uur48$"48h" >= 11.5 & uur48$"48h" <=14)#6  0.6%
+
+procentenv2<- c(40.9,40.8,40.6,40.1,39.4,31.3,32.0,31.8,31.2,32.5,21.7,20.9,21.3,21.3,21.2,5.8,5.7,5.7,6.8,6.3,0.3,0.6,0.6,0.6,0.6)
+binsize<-c("1,5 tot 4","1,5 tot 4","1,5 tot 4","1,5 tot 4","1,5 tot 4","4 tot 6,5","4 tot 6,5","4 tot 6,5","4 tot 6,5","4 tot 6,5","6,5 tot 9","6,5 tot 9","6,5 tot 9","6,5 tot 9","6,5 tot 9","9 tot 11,5","9 tot 11,5","9 tot 11,5","9 tot 11,5","9 tot 11,5","11,5 tot 14","11,5 tot 14","11,5 tot 14","11,5 tot 14","11,5 tot 14")
+expressie_V2d<-c("zeer lage expressie","zeer lage expressie","zeer lage expressie","zeer lage expressie","zeer lage expressie","lage expressie","lage expressie","lage expressie","lage expressie","lage expressie","medium expressie","medium expressie","medium expressie","medium expressie","medium expressie","hoge expressie","hoge expressie","hoge expressie","hoge expressie","hoge expressie","zeer hoge expressie","zeer hoge expressie","zeer hoge expressie","zeer hoge expressie","zeer hoge expressie")
+newdatapro<- tibble(expressie_V2d,binsize,procentenv2) %>%
+  mutate(procentenv2 =paste0(procentenv2,"%"))
+
+knitr::kable(newdatapro)
+```
+.
+
+hierboven is een tabel te zien met het expressie niveau in procenten per binsize. de binsize is de expressie. de binsizes zijn onderverdeeld van zeer lage expressie tot zeer hoge expressie in 5 verschillende niveaus. zodat de distributie goed te zien is.
+
+Aan de kolom met de gen expressie verdeling in procenten is te zien dat er weinig verschil zit tussen de verschillende tijdsduren (deze lopen van 0h tot 48h verticaal). Echter zit er in de verschillende bin sizes wel een groot verschil. de genen hebben volgens het tabel over het algemeen dus een relatief zeer lage gen expressie (40%) en lage gen expressie (30%). 
+
+## opdracht 2e hieronder
+
+Using the information from the previous question, select two durations and use ggplot to make a
+graph of this frequency distribution
+
+.
+```{r code voor vraag 2e, echo=FALSE}
+v2eUur0<-c(40.9,31.3,21.7,5.8,0.3)
+v2eUur24<-c(40.1,31.2,21.3,6.8,0.6)
+v2eUur0_24<-tibble(v2eUur0,v2eUur24)
+v2eUur0_24_tidy<-gather(v2eUur0_24,'v2eUur0','v2eUur24', key= "uren", value = "expressie")
+ggplot(v2eUur0_24_tidy, aes(x=uren, y= expressie, fill = expressie)) + 
+  geom_bar(stat = "identity") + labs(title = "Difference in Gene Expression after of 0h and 24h",
+                                     subtitle = "", y = "Gene Expression %")
+
+
+```
+.
+
+hierboven is een bar plot uitgebeeld wat de expressie in percentages weer geeft, donkerblauw is weinig expressie en lichtblauw hoge expressie. de infrmatie is afkomstig van het tabel uit vraag 2C. de linker plot is 0h en de rechter plot is 24h.
+
+## opdracht 2f hieronder
+
+Give some insight into the variability of the gene expression at the different durations. You can
+choose to do this in a graph, table or inline text, and you may choose the measure of variability
+```{r code voor vraag 2f, echo=FALSE}
+"we hebben gekozen voor 5 bin_size's om de data te verdelen in zeer lage tot zeer hoge expressie. Er veranderd niet veel in de genexpressien na het verloop van tijd. de verdeling van de expressie niveaus van 0h tot 48h uur blijft vrij wel gelijk. daarnaast hebben we specifiek gekeken naar het verschil in expressie tussen 0 en 24 uur en hier een box plot van gemaakt. In de grafiek van vraag 2E is er ook weinig verschill tussen de percentages per bin-size te zien. Dit is ook in de tabel 2D terug te zien."
+
+```
+## opdracht 3a hieronder
+
+Combine dataset gene_expression with gene_annotation. For each gene in dataset
+gene_expression add the gene information present in dataset gene_annotation
+```{r code voor vraag 3a, echo=FALSE}
+allGene <-gene_expression2 %>% select(Gene)
+Gene3a<-left_join(allGene,gene_anno,by ="Gene")
+head(Gene3a)
+```
+## opdracht 3b hieronder
+
+Rename the non-syntactic column names of the newly combined datasets into valid R column
+names using snake_case where you separate lowercase words with _. Think of your own column
+names as long as they make sense
+```{r code voor vraag 3b}
+gene3a_rename<-Gene3a %>% rename("Gene_description" = "Gene description", 
+                        "Chromosome_Scaffold_name" = "Chromosome/scaffold name",
+                        "Gene_Start_BP" = "Gene start (bp)",
+                        "Gene_End_BP" = "Gene end (bp)") 
+```
+in deze code hierboven worden de namen verbeterd zodat de data meer tidy is. 
+
+## opdracht 3c hieronder
+
+Calculate the median expression over all durations of all genes on the negative strand of chromosome 6: Provide this information with inline code within a sentence
+```{r code voor vraag 3c, echo=FALSE}
+gene_combined <-merge(gene_anno,gene_expression2)
+gene_combined_tidy<- gather(gene_combined, '0h', '3h','12h','24h','48h',  key = "hours",  value = "expression")
+
+gene_combined_tidy_num<-gene_combined_tidy %>% filter(Strand < 0)
+gene_combined_filter<-gene_combined_tidy_num %>% filter(`Chromosome/scaffold name` == 6)
+
+median(gene_combined_filter$expression)
+
+```
+## opdracht 3d hieronder
+
+Calculate the difference in gene expression between 24h and 0h and store in new variable named
+d24 in the combined dataset
+```{r code voor vraag 3d, echo=FALSE}
+GeneDifference_24h_0h <- gene_expression2 %>% select(2,5) %>% mutate(v24_0= gene_expression2$"24h" - gene_expression2$"0h") %>% round(digits = 3)
+
+knitr::kable(head(GeneDifference_24h_0h))
+
+mean(GeneDifference_24h_0h$v24_0)
+"dit is het gemiddelde verschil in expressie tussen 24 uur en 0 uur "
+```
+## opdracht 3e hieronder
+
+Do this again for one other pair of columns, and make a boxplot containing the two new variables
+containing differences in gene expression
+```{r code voor vraag 3e, echo=FALSE}
+
+GeneDifference_48h_24h <- gene_expression2 %>% select(5,6) %>% mutate(v48_24= gene_expression2$"48h" - gene_expression2$"24h") %>% round(digits = 3)
+GeneDifference_48h_24h_tidy<- gather(GeneDifference_48h_24h, '48h','24h','v48_24',  key = "hours",  value = "expression")
+head(GeneDifference_48h_24h)
+
+ggplot(data = GeneDifference_48h_24h_tidy, aes(x =hours,y=expression)) +
+  geom_boxplot(aes(fill = hours)) +
+  labs(
+    title = "Gene expression Difference between 48h and 24h",
+    subtitle= "the difference in Gene expression(boxplot A)",
+    x= "hours: 48h =  24h = verschil 48 uur en 24 uur  ",
+    y= "Gene expression",
+   fill = "Expression"
+  )
+
+
+GeneDifference_48h_24h_verschil<- GeneDifference_48h_24h %>% select(v48_24) 
+GeneDifference_24h_0h_verschil<- GeneDifference_24h_0h %>% select(v24_0) 
+
+
+samen_verschil<-cbind(GeneDifference_24h_0h_verschil,GeneDifference_48h_24h_verschil)
+
+samen_verschil_tidy<- gather(samen_verschil, 'v24_0','v48_24',  key = "hours",  value = "expression")
+
+ggplot(data = samen_verschil_tidy, aes(x =hours,y=expression)) +
+  geom_boxplot(aes(fill = hours)) +
+  labs(
+    title = "Gene expression Difference between 24h and 0h, and the difference -",
+    subtitle= "between 48h and 24h (boxplot B)",
+    x= "hours: verschil tussen 48u en 24u, 24u en 0u ",
+    y= "Gene expression",
+   fill = "Expression"
+  )
+
+"bijschrift boxplot B: deze grafiek laat het verschil in genesprexpressie zien tussen 0 en 24 uur en 24 en 48 uur. zo kan er gekeken worden of er een grotere stijging is in genexpressie na 0 en 24 uur of na 24 en 48 uur. "
+
+mean(GeneDifference_48h_24h$v48_24)
+"dit is het gemiddelde verschil in expressie tussen 48 uur en 24 uur  "
+```
+.
+
+## opdracht 3f hieronder
+
+Describe in text your findings in question 3c, 3d and 3e
+```{r code voor vraag 3f, echo=FALSE}
+"3C:het middelste getal van de negatieve strand op chromosoom 6 is 3.3. dat is relatief weinig in verhouding met de totale genexpressie die tussen de 2 en 14 ligt"
+
+"3D: de colom met v24_0 geeft het verschil aan tussen 24 uur en 0 uur. het gemiddelide verschil wat er gemeten is tussen 24 en 0 uur is 0,054. dit is een relatief klein verschil."
+
+"3E:de colom met v48_24 geeft het verschil aan tussen 48 uur en 24 uur. het gemiddelide verschil wat er gemeten is tussen 48 en 24 uur is 0,0033. dit is een relatief klein verschil. het gemiddelde verschil tussen 24 en 0 uur is 0,054. dit is ook vrij klein. Dit is ook terug te zien in de boxplot B. uit de grafiek valt te herleiden dat er wel verschil aanwezig is, ook al is dit maar klein. de linker boxplot is namelijk iets groter dan de boxplot van 24-48 uur. ook is de spreiding in de boxplot van 0 tot 24 uur veel groter. dit zouden dus ook uitbijters kunnen zijn."
+```
+## opdracht 4a hieronder
+
+What is the gene description of the gene with length 36416? Use R code embedded in plain text
+to show the gene descriptions of this gene
+```{r code voor vraag 4a, echo=FALSE}
+
+GeneDifference_Length <- Gene3a %>% select(5,6) %>% mutate(vLength4= Gene3a$`Gene end (bp)` - Gene3a$`Gene start (bp)`) %>% round(digits = 3)
+Genecombined3 <- left_join(GeneDifference_Length, gene_anno, by = 'Gene end (bp)')
+
+vraag4a <- filter(Genecombined3, vLength4 == 36416)
+knitr::kable(vraag4a)
+
+```
+## opdracht 4b hieronder
+
+What percentage of genes is on the same chromosome as this gene?
+```{r code voor vraag 4b, echo=FALSE}
+aantal_genes_17<-length(which(Gene3a$`Chromosome/scaffold name` == 17))
+percentage_4b<-c(aantal_genes_17 / 10) %>% paste0("%")
+percentage_4b
+```
+## opdracht 4c hieronder
+
+Which other gene is closest to this gene?
+```{r code voor vraag 4c, echo=FALSE}
+#vraag4btest<-Gene3a %>% filter('Chromosome/scaffold name' == 17) 
+#knitr::kable(vraag4btest)
+#moet nog
+```
+## opdracht 4d hieronder
+
+Find the genes that have “mitochondrial” at the beginning of their description
+```{r code voor vraag 4d, echo=FALSE}
+grep("^mitochondrial", Gene3a$`Gene description`)
+
+"hierboven staan de posities en hieronder de informatie die erbij hoort"
+
+Gene3a[c(457,646,729,965), ]
+
+
+```
+## opdracht 5a hieronder
+
+Make a graph of gene expression levels at the different durations. Choose what to depict and in
+what kind of graph.
+
+
+.
+```{r code voor vraag 5a, echo=FALSE}
+
+gene_expression2_tidy<- gather(gene_expression2, '0h', '3h','12h','24h','48h',  key = "hours",  value = "expression")
+
+
+ggplot(gene_expression2_tidy, aes(x=hours, y= expression,fill=hours)) +
+  geom_boxplot() + labs(title = "Difference in Gene Expression between different durations",
+                                     subtitle = "Increase in Gene Expression after incubation with stof X",
+
+                                     y = "Gene Expression")
+
+"deze grafiek geeft het verschil aan in genexpressie gemeten na X aantal tijd. op de x as staan de uren en op de y as de genexpressie. uit de grafiek is te herleiden dat er een hele kleine stijging is in genexpressie na 24 uur en 48 uur."
+
+
+```
+.
+
+## opdracht 5b hieronder
+
+Describe your graph in text
+```{r code voor vraag 5b, echo=FALSE}
+"We hebben het verschil in genexpressie uitgezet in een boxplot omdat deze het beste resultaat gaf. uit de grafiek is te herleiden dat er een hele kleine stijging is in genexpressie na 24 uur en 48 uur. de uitbijters liggen ook vrijwel op een lijn"
+```
+## opdracht 5c hieronder
+
+Make a bar graph of the X number of genes that are most upregulated. You may choose what
+number of genes to include, and you may choose what “upregulated” means and how you will
+calculate it.
+
+.
+```{r code voor vraag 5c, echo=FALSE}
+vraag_5b <- read_excel ("data/eindopdracht/vraag5b.xlsx")
+ggplot(vraag_5b, aes(x=Gene, y= Expression, fill = Expression)) + 
+  geom_bar(stat = "identity") + scale_x_discrete(guide = guide_axis(n.dodge=3)) +
+  labs(title = "Difference in Gene Expression after 48 hours",
+                                     subtitle = "Increase in Gene Expression after incubation with stof X", y = "Gene Expression")
+```
+
+## opdracht 5d hieronder
+
+Describe your graph and the choices you made in question 5c in the text.
+```{r code voor vraag 5d, echo=FALSE}
+"In vraag 5C hebben we een grafiek gekozen die laat zien welke genen na 48 uur het meest in genexpressie zijn toegenomen. We hebben dit gekozen omdat we denken dat dit belangrijk is voor het expreriment om te weten. Omdat de onderzoeker op zoek is naar een verschil in genexpressie na het toevoegen van stof X. In eerste instantie hebben we ook gekeken naar het verschil in genexpressie tussen alle tijdsduren. maar we kwamen vrij snel tot de conclusie dat er het meeste verschil in genexpressie is na 48 uur. dus daarom hebben we ervoor gekozen om de genen te tonen met de meeste expressie toename na 48 uur "
+```
+
+## opdracht 6 hieronder
+
+Compare whether gene expression values of denovo genes are significantly at 24h compared to
+48h. Use the datafiles primed_denovo and dataset “expression” which is present as a datasheet
+in primed_denovo_expression.xlsx. Dataset primed_denovo contains the genes of each group.
+Dataset “expression” contains the actual gene expression values. Perform all the necessary statistical tests, provide a relevant figure and report p-values as a table. Provide text explaining the results, H0 and conclusion. Use inline code to report relevant descriptive statistics
+
+
+H0: there is no difference between de gene expression of 24h and 48h. 
+
+H1 : there is a significant difference between the gene expressions of 24h and 48h.
+
+
+```{r code voor vraag 6, echo=FALSE}
+#het tidy maken van het primed_denovo_24_48 bestand
+Primed_Denovo_24_48 <- primed_denovo_expression %>% select(5,6)
+Primed_24_48_Tidy <- gather(Primed_Denovo_24_48, '24h', '48h', key = "H_24_48",  value = "expression")
+#hier wordt een boxplot gemaakt van het verschil tussen 24u en 48u
+ggplot(data = Primed_24_48_Tidy, aes(x = H_24_48, y = expression)) +
+  geom_boxplot(aes(fill = H_24_48)) + labs(title = "Difference in Gene Expression after 24/48 hours",
+                                           subtitle = "Difference in Gene Expression after incubation with stof X between 24 and 48 hours",
+                                           x = "hours",
+                                           y = "Gene Expression", outlier.shape = 3)
+
+"in deze boxplot is het verschil in genexpressie tussen 24 en 48 uur te zien. op de x as staan de uren en op de y as de genexpressie."
+
+#anova test wordt hier uitgevoerd
+Anova.Test <- aov(expression ~ H_24_48, data = Primed_24_48_Tidy)
+summary(Anova.Test)
+dt3<-summary(Anova.Test)
+
+
+
+#shapiro wilk test van 24h en 48h
+shapiro.test(Primed_Denovo_24_48$"24h")
+shapiro.test(Primed_Denovo_24_48$"48h")
+
+dt<-shapiro.test(Primed_Denovo_24_48$"24h")
+dt2<-shapiro.test(Primed_Denovo_24_48$"48h")
+samen<-cbind(dt[2],dt2[2],"0.139")
+"            shapiro 24u                                 shapiro 48u                                   anova"
+#tabel maken van de p-values
+kbl(samen) %>%
+  kable_styling(fixed_thead = T)
+
+
+
+
+```
+
+we hebben eerst een Shapiro Wilick-test uitgevoerd om te zien of de gegevens normaal verdeeld waren.
+De resultaten van de Shapiro-test laten zien dat de gegevens inderdaad normaal verdeeld zijn. omdat de waarden beide hoger zijn dan 0,05.
+Vervolgens konden we een T.Test uitvoeren, waarbij we de Anova Test gebruikten om te berekenen of er een statistisch significant verschil is tussen de resultaten van 24 uur tot 48 uur.
+Uit de resultaten van de T.Test blijkt dat de nulhypothese kan worden aanvaard. aangezien de waarden hoger zijn dan 0,05. er is dus geen significant verschil in expressie tussen 24 uur en 48 uur na toevoeging van stof X.
