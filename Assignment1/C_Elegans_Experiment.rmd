@@ -7,6 +7,10 @@ output: html_document
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+install.packages("devtools")
+library(devtools)
+install_github("easyGgplot2", "kassambara")
+library(easyGgplot2)
 library(tidyverse)
 library(dslabs)
 library(readxl)
@@ -20,8 +24,12 @@ C_elegans <- read_excel ("Tidydata_C.xlsx")
 ```
 after that we are using the scatterplot tool to visualize the data.
 ```{r, echo=FALSE}
-plot(wt, mpg, main="Scatterplot Example",
-   xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19)
+ggplot2.scatterplot(data=C_elegans, xName='compConcentration',yName='DataRaw', 
+                    addRegLine=TRUE, regLineColor="blue")
+```
+Correct the data-type of compConcentration to numeric and than look at the graph again. Use a log10 transformation on the x-axis to get a clear graph. Also, add a bit of jitter to the points in the graph so that points are not overlapping.
+```{r}
+
 ```
 
 
