@@ -14,7 +14,7 @@ I had to work with shiny for the first time during the master classes and the pr
 
 **Spending the first 2 days practising**
 
-Because I am already familiar with Shiny App, I don't need a lot of time to do research. The website I found is actually a deepening of the master class, so it helped me a lot (1). I needed 1-2 days to finish this master class. 
+Because I am already familiar with Shiny App, I don't need a lot of time to do research. The website I found is actually a deepening of the master class, so it helped me a lot (1)(2). I needed 1-2 days to finish this master class. 
 
 **Building my own Shiny App**
 
@@ -25,6 +25,7 @@ After practising with Shiny, it is really time to start making my own Shiny App.
 I want my Shiny app to be clear, so I'll be adding lots of comments. I also want to make an app with more difficult graphs instead of tables, because I find graphs more of a challenge. For the type of dataset I have chosen (transcription analysis) I would like to add heat maps and vulcano plots because I see these are used more often for transcription analysis. 
 
 (1)https://mastering-shiny.org/basic-app.html
+(2)https://towardsdatascience.com/how-to-build-a-data-analysis-app-in-r-shiny-143bee9338f7
 
 ```{r setup, echo=FALSE}
 library(shiny)
