@@ -1,0 +1,27 @@
+---
+title: "C_Elegens_Experiment"
+author: "Tiara Verweij"
+date: "24-5-2021"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dslabs)
+library(readxl)
+library(ggplot2)
+library(kableExtra)
+```
+First we are going to download the dataset with the read_excel tool
+```{r import, echo=FALSE}
+C_elegans <- read_excel ("Tidydata_C.xlsx")
+
+```
+after that we are using the scatterplot tool to visualize the data.
+```{r, echo=FALSE}
+plot(wt, mpg, main="Scatterplot Example",
+   xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19)
+```
+
+
