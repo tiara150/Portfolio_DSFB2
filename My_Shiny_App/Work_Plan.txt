@@ -10,6 +10,8 @@ My recources:
 
 https://towardsdatascience.com/beginners-guide-to-creating-an-r-shiny-app-1664387d95b3 -> this website is helpful for understanding Shiny better
 
+https://mastering-shiny.org/basic-app.html
+
 for downloading the dataset:
 
 fn <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE152439&format=file"
