@@ -24,6 +24,10 @@ After practising with Shiny, it is really time to start making my own Shiny App.
 
 I want my Shiny app to be clear, so I'll be adding lots of comments. I also want to make an app with more difficult graphs instead of tables, because I find graphs more of a challenge. For the type of dataset I have chosen (transcription analysis) I would like to add heat maps and vulcano plots because I see these are used more often for transcription analysis. 
 
+**MY CV**
+
+using Shiny for my CV
+
 (1)https://mastering-shiny.org/basic-app.html
 (2)https://towardsdatascience.com/how-to-build-a-data-analysis-app-in-r-shiny-143bee9338f7
 

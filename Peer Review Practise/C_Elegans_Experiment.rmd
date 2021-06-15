@@ -1,0 +1,35 @@
+---
+title: "C_Elegens_Experiment"
+author: "Tiara Verweij"
+date: "24-5-2021"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+install.packages("devtools")
+library(devtools)
+install_github("easyGgplot2", "kassambara")
+library(easyGgplot2)
+library(tidyverse)
+library(dslabs)
+library(readxl)
+library(ggplot2)
+library(kableExtra)
+```
+First we are going to download the dataset with the read_excel tool
+```{r import, echo=FALSE}
+C_elegans <- read_excel ("Tidydata_C.xlsx")
+
+```
+after that we are using the scatterplot tool to visualize the data.
+```{r, echo=FALSE}
+ggplot2.scatterplot(data=C_elegans, xName='compConcentration',yName='DataRaw', 
+                    addRegLine=TRUE, regLineColor="blue")
+```
+Correct the data-type of compConcentration to numeric and than look at the graph again. Use a log10 transformation on the x-axis to get a clear graph. Also, add a bit of jitter to the points in the graph so that points are not overlapping.
+```{r}
+
+```
+
+
