@@ -48,31 +48,6 @@ I want my Shiny app to be clear, so I'll be adding lots of comments. I also want
 (1)https://mastering-shiny.org/basic-app.html
 (2)https://towardsdatascience.com/how-to-build-a-data-analysis-app-in-r-shiny-143bee9338f7
 
-```{r setup, echo=FALSE}
-library(shiny)
-```
-```{r}
-ui <- fluidPage(
-  selectInput("dataset", label = "Dataset", choices = ls("package:datasets")),
-  verbatimTextOutput("summary"),
-  tableOutput("table")
-)
-server <- function(input, output, session) {
-  # Create a reactive expression
-  dataset <- reactive({
-    get(input$dataset, "package:datasets")
-  })
-  output$summary <- renderPrint({
-    # Use a reactive expression by calling it like a function
-    summary(dataset())
-  })
-  
-  output$table <- renderTable({
-    dataset()
-  })
-}
-shinyApp(ui, server)
-```
 
 
 
