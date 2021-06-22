@@ -40,7 +40,7 @@ Education
 Job Experience
 ----------
 
-**Administrative Staff Member - ABN AMRO Bank **
+**Administrative Staff Member - ABN AMRO Bank**
 
 Perform administrative work in various systems. In addition, I have mail contact with customers regarding questions about their contract. 
 
@@ -52,7 +52,7 @@ Opening and closing the building, managing colleagues and helping guests with pr
 ## Previous research
 
 **Project Lectorate**
-This is my current project. I am building a script where data sets from a transcription analysis can be downloaded via a GSE/SRA number and then a summarised experiment can be made. 
+This is my latest project. I am building a script where data sets from a transcription analysis can be downloaded via a GSE/SRA number and then a summarised experiment can be made. 
 
 **Project Genes & proteins**
 This research was about the role of the immune system during a viral infection. The aim was to find out more about Interleukin-8, which plays a role in the infection with the RS virus. 
@@ -61,7 +61,7 @@ This research was about the role of the immune system during a viral infection. 
 This research focused on the effect of the pharmaceutical compound Lithium on the C. Elegans in relation to Alzheimer's disease. 
 
 **Project Biomolecular Research**
-This research dealt with the absorption of the fatty acids EPA and DHA in muscle cells. It also examined where the fatty acids go after absorption.
+This research dealt with the absorption of the fatty acids EPA and DHA in muscle cells. It also examined where the fatty acids go after absorption. We used a HPLC-MS to study where the fatty acids went.
 
 
 Technical Experience
@@ -73,6 +73,7 @@ Building my own Shiny App
 
 Programming Languages
 :   **R** R is what I use most for programming. I have been working with R for about 6 months now and I have had several assignments on R. These can also be found on my Github page. (link below).
+:   **bash** I am also familiar with programming in Bash, but I can learn a bit more about it. 
 
 : https://github.com/tiara150/Portfolio_DSFB2.git
 
