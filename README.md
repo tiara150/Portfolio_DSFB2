@@ -28,14 +28,14 @@ Education
 2017-2022 (expected)
 :   **Bachelor, Sciences**; Hogeschool Utrecht (Utrecht)
 
-    *Minor: Data Science for Biology*     
-    *Specialisation: Biomolecular Research*
+    Minor: Data Science for Biology     
+    Specialisation: Biomolecular Research
 
 2012-2017
 :   **Havo, Nature and Technique**; Het Nieuwe Eemland
      (Amersfoort)
 
-    *Course: physics, biology, science and math*
+    Course: physics, biology, science and math
     
 Job Experience
 ----------
@@ -52,16 +52,19 @@ Opening and closing the building, managing colleagues and helping guests with pr
 ## Previous research
 
 **Project Lectorate**
-This is my latest project. I am building a script where data sets from a transcription analysis can be downloaded via a GSE/SRA number and then a summarised experiment can be made. 
+This is my latest project. I am building a script where data sets from a transcription analysis can be downloaded via a simple function and then a coun matrix can be made. We finally developed a function that performs a quantification analysis from a simple link to the datasets and provides this document in orderly folders. This is very useful for researchers without programming experience.
 
 **Project Genes & proteins**
 This research was about the role of the immune system during a viral infection. The aim was to find out more about Interleukin-8, which plays a role in the infection with the RS virus. 
 
 **Project Pharmacon**
-This research focused on the effect of the pharmaceutical compound Lithium on the C. Elegans in relation to Alzheimer's disease. 
+This research focused on the effect of the pharmaceutical compound Lithium on the C. Elegans in relation to Alzheimer's disease. We had to study the brain activity of the C.elegans before and after adding Lithium. 
+
+**Project Molecular Biology**
+With this project, we addressed the research question "does cortisol have a greater stimulating effect on the rat glucocorticoid receptor than the human glucocorticoid receptor?". to answer this research question, a Westernblot was performed to determine the presence of the GR receptor. then a fluorescence assay was performed to determine the translocation of the fusion protein. finally, a luciferase assay was performed to determine the transactivation of the GR receptor.
 
 **Project Biomolecular Research**
-This research dealt with the absorption of the fatty acids EPA and DHA in muscle cells. It also examined where the fatty acids go after absorption. We used a HPLC-MS to study where the fatty acids went.
+This research was on behalf of Nutricia Science. We dealt with the absorption of the fatty acids EPA and DHA in muscle cells for muscle diseases. It also examined where the fatty acids go after absorption. We used a HPLC-MS to study where the fatty acids went.
 
 
 Technical Experience
