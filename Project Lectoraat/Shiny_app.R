@@ -9,6 +9,17 @@ library(iSEE)
 ## Copy them into a script or an R session containing your SingleCellExperiment.
 ## All commands below refer to your SingleCellExperiment object as `se`.
 
+## what we want : an app with the research of the EPA and DHA project. 
+
+## first we download the data from excel in Rstudio. and we organize the data with the following codes:
+
+EPA <- import.excel(EPAlist)
+DHA <- import.excel(DHAlist)
+
+Setcode(EPA) %>% list.DHA %>% 
+
+## we are making the data 
+
 se <- sce
 colData(se)[,"sizeFactors(se)"] <- sizeFactors(se)
 colormap <- ExperimentColorMap()
